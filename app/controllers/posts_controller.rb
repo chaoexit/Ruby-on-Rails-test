@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :addtag, :addtagpost, :removetag]
-
+  before_action :check_author, only: [:edit, :update, :destroy, :addtagpost, :removetag, :addtag]
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    @user = current_user
   end
 
   # GET /posts/1
@@ -20,9 +21,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    if ( @post.user_id != current_user.id )
-      redirect_to posts_path, notice: 'You are not author of this post'
-    end
   end
 
   def addtagpost
@@ -115,5 +113,11 @@ class PostsController < ApplicationController
 
     def removetag_params
       params.permit(:id, :tagid)
+    end
+
+    def check_author
+      if ( @post.user_id != current_user.id )
+        redirect_to posts_path, notice: 'You are not author of this post' and return
+      end
     end
 end

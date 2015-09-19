@@ -20,9 +20,11 @@
         <td><%= post.body %></td>
         <td>Post ID = <%= post.id %></td>
         <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'AddTag', "/posts/"+post.id.to_s+"/addtag" %>
+        <% if ( @user.id == post.user_id ) %>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'AddTag', "/posts/"+post.id.to_s+"/addtag" %>
+            <% end %>
       </tr>
     <% end %>
   </tbody>
