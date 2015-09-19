@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %><br>
+  Post count : <%= @posts.count %><br>
+  <% @posts.each do |post| %>
+  	<%= link_to post.title, post %><br>
+  	<% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
