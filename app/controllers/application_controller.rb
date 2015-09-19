@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :current_user
 
   def current_user
-    user = (User.find(2) rescue nil) || User.first
+    user = (User.find(params[:set_user]) rescue nil) || User.first
     logger.debug "User set to #{user.id} (requested #{params[:set_user]})"
 
     user
