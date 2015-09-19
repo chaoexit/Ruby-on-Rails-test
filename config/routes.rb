@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :tags do 
+    resources :posts
+  end
+  resources :posts do
+    resources :tags
+  end
   resources :users
-  resources :posts
   root to: 'posts#index'
+
+    get '/posts/:id/addtag' => 'posts#addtag'
+    post '/posts/:id/addtag' => 'posts#addtagpost'
+    get '/posts/:id/removetag/:tagid' => 'posts#removetag'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

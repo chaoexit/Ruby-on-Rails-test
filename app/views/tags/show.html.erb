@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tag.name %>
+</p>
+
+<p>
+  <strong>Number of post(s) : </strong>
+  <%= @tag.posts.count %>
+</p>
+
+Posts<br><br>
+<% @tag.posts.each do |post| %>
+	Post id : <%= link_to post.id, post %><br>
+	title : <%= post.title %><br> 
+	body : <%= post.body %><br>
+	=========<br>
+<% end %>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

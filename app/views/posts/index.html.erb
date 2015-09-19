@@ -22,6 +22,7 @@
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'AddTag', "/posts/"+post.id.to_s+"/addtag" %>
       </tr>
     <% end %>
   </tbody>
@@ -29,5 +30,6 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
-<%= link_to 'User list', users_path %>
+<%= link_to 'New Post', new_post_path %><br>
+<%= link_to 'User list', users_path %><br>
+<%= link_to 'Tag list', tags_path %><br>

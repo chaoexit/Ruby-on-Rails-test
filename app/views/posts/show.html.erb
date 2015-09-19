@@ -15,5 +15,18 @@
   <%= @post.body %>
 </p>
 
+<p>
+  <strong>Number of tag(s):</strong>
+  <%= @post.tags.count %>
+</p>
+
+Tags<br><br>
+<% @post.tags.each do |tag| %>
+	Tag id : <%= link_to tag.id, tag %><br>
+	Tag name : <%= tag.name %><br> 
+    <%= link_to 'Remove this tag', '/posts/' + @post.id.to_s + '/removetag/' + tag.id.to_s, data: { confirm: 'Are you sure to delete this tag?' } %><br>
+	=========<br>
+<% end %>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
